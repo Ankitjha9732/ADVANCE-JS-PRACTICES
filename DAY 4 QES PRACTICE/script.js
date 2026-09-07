@@ -121,3 +121,65 @@ loginUser("jha", function(data){
         });
     });
 });
+
+
+//EX4
+
+// Scenario: Product Search
+
+// Ek function banao getProduct.
+
+// Requirements:
+// getProduct productId lega
+// 1 second ke baad callback ko ek product object de:
+// id
+// name
+// price
+
+// Phir:
+// Ek function banao checkStock.
+
+// productId lega
+// 1 second ke baad callback ko stock number de
+
+// Phir:
+// Ek function banao placeOrder.
+
+// product lega
+// stock lega
+// 1 second ke baad callback ko "Order placed successfully" de
+
+// Final output:
+// Console mein kuch is type ka output aana chahiye:
+
+// Product: Laptop
+// Stock: 5
+// Order placed successfully
+
+function getProduct(productId, cb){
+    console.log("product searching...");
+    setTimeout(() => {
+        cb({id:2324, name:"HP omnibook 5", price:70000});
+    },2000);
+}
+function checkStock(id, cb){
+    console.log("checking stock...");
+    setTimeout(() => {
+        cb({stock:5});
+    }, 2000);
+}
+function placeOrder(product, stock, cb){
+    console.log("placing order...");
+    setTimeout(() => {
+        cb();
+    }, 2000);
+}
+getProduct(2324, function(product){
+    checkStock(product.id, function(stock){
+        placeOrder(product,stock, function(){
+            console.log("product:", product.name);
+            console.log("stock:", stock.stock);
+            console.log("order placed successfully✅");
+        });
+    });
+});
